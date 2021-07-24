@@ -1,5 +1,8 @@
 package com.example.restapi;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,24 +15,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/cart")
 public class CartController {
+	
+	@Autowired
+	CartService cartService;
 
 	@GetMapping("/get")
-	public void getCartDetails() {
-		
+	public List<CartItem> getCartDetails() {
+		return cartService.getCartDetails();
 	}
 	
 	@PostMapping("/add")
-	public void addCartDetails(@RequestBody CartItem cartItem) {
-		
+	public int addCartDetails(@RequestBody CartItem cartItem) {
+		return cartService.addCartDetails(cartItem);
 	}
 	
 	@PutMapping("/update")
-	public void updateCartDetails(@RequestBody CartItem cartItem) {
-		
+	public int updateCartDetails(@RequestBody CartItem cartItem) {
+		return cartService.updateCartDetails(cartItem);
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public void deleteCartDetails(@PathVariable int id) {
-		
+	public int deleteCartDetails(@PathVariable int id) {
+		return cartService.deleteCartDetails(id);
 	}
 }
