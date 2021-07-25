@@ -22,13 +22,13 @@ public class CartRepository {
 	}
 	
 	public int addCartDetails(CartItem cartItem) {
-		return jdbcTemplate.update("insert into carts (id, name, price) values(?,?,)",
+		return jdbcTemplate.update("insert into carts (id, name, price) values(?,?,?)",
 				cartItem.getId(), cartItem.getName(), cartItem.getPrice());
 	}
 	
 	public int updateCartDetails(CartItem cartItem) {
-		return jdbcTemplate.update("update carts set name = ? where id = ?",
-				cartItem.getName(), cartItem.getId()
+		return jdbcTemplate.update("update carts set name = ?, price = ? where id = ?",
+				cartItem.getName(), cartItem.getPrice(), cartItem.getId()
 				);				
 	}
 	
